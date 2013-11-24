@@ -2,10 +2,11 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<?php foreach($css_files as $file): ?>
+<title><?php echo $subject ?></title>
+<?php foreach($output->css_files as $file): ?>
 <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
 <?php endforeach; ?>
-<?php foreach($js_files as $file): ?>
+<?php foreach($output->js_files as $file): ?>
 <script src="<?php echo $file; ?>"></script>
 <?php endforeach; ?>
 <style type='text/css'>
@@ -27,7 +28,7 @@ a:hover
 </head>
 <body>
 	<div>
-		<?php echo $output; ?>
+		<?php echo $output->output; ?>
 	</div>
 </body>
 </html>
