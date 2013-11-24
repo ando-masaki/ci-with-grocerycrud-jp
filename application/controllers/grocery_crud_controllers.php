@@ -13,13 +13,19 @@ class Grocery_crud_controllers extends CI_Controller
 		$this->load->database();
 		$this->load->helper('url');
 		$this->load->library('grocery_CRUD');
-                $this->grocery_crud->set_theme($this->theme);
+		$this->grocery_crud->set_theme($this->theme);
 	}
 
-	public function index($table)
+	public function index($param='')
 	{
-                $this->grocery_crud->set_table($table);
-		$this->subject = ucfirst($table);
+		redirect(site_url(array(strtolower(get_class($this)), 'manage', $param)), 'location');
+	}
+
+	public function manage($table_name='')
+	{
+		$table_name or show_error('Parameter table_name is required.');
+		$this->grocery_crud->set_table($table_name);
+		$this->subject = ucfirst($table_name);
 		$this->grocery_crud->set_subject($this->subject);
 		$this->output = $this->grocery_crud->render();
 		$this->load->view('grocery_crud_view.php', $this);
@@ -29,10 +35,10 @@ class Grocery_crud_controllers extends CI_Controller
 	{
 		$this->grocery_crud->display_as('created_at', '作成日時');
 		$this->grocery_crud->display_as('updated_at', '更新日時');
-		$this->grocery_crud->field_type('created_at', 'hidden');
-		$this->grocery_crud->field_type('updated_at', 'hidden');
+		$this->grocery_crud->field_type('created_at', 'invisible');
+		$this->grocery_crud->field_type('updated_at', 'invisible');
 		$this->grocery_crud->callback_before_insert(array($this, 'set_saved_at'));
-                $this->grocery_crud->callback_before_update(array($this, 'set_saved_at'));
+		$this->grocery_crud->callback_before_update(array($this, 'set_saved_at'));
 	}
 
 	public function set_saved_at($post_array, $primary_key=NULL)
