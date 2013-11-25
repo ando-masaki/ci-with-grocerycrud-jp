@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <title><?php echo $subject ?></title>
-<?php foreach($output->css_files as $file): ?>
+<?php foreach($renderer->css_files as $file): ?>
 <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
 <?php endforeach; ?>
-<?php foreach($output->js_files as $file): ?>
+<?php foreach($renderer->js_files as $file): ?>
 <script src="<?php echo $file; ?>"></script>
 <?php endforeach; ?>
 <style type='text/css'>
@@ -28,7 +28,7 @@ a:hover
 </head>
 <body>
 	<div>
-		<?php echo $output->output; ?>
+		<?php echo $renderer->output; ?>
 	</div>
 </body>
 </html>
