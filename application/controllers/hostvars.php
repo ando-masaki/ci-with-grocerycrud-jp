@@ -38,7 +38,7 @@ class Hostvars extends Grocery_crud_controllers
 		$this->grocery_crud->field_type('hostname', 'enum', $hostnames);
 		$this->grocery_crud->set_rules('name', '変数名', 'alpha_dash');
 		$this->saved_at_util();
-		$this->output = $this->grocery_crud->render();
+		$this->renderer = $this->grocery_crud->render();
 		$this->load->view('grocery_crud_view.php', $this);
 	}
 
